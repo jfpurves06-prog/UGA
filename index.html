@@ -46,7 +46,7 @@ nav.scrolled .n-ham span{background:var(--ink)}
 #mob-menu.open{transform:none}
 #mob-menu a{font-family:var(--serif);font-size:42px;font-weight:300;color:var(--ink);text-decoration:none;transition:color .3s}
 #mob-menu a:hover{color:var(--gold)}
-#hero{position:sticky;top:0;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:flex-end;z-index:1}
+#hero{position:fixed;top:0;left:0;right:0;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:flex-end;z-index:1}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(10,8,6,.78) 0%,rgba(10,8,6,.3) 50%,rgba(10,8,6,.05) 100%),linear-gradient(to right,rgba(10,8,6,.55) 0%,transparent 65%)}
 .hero-content{position:relative;z-index:2;padding:0 6vw 9vh;max-width:min(700px,90vw)}
@@ -101,7 +101,7 @@ h2.headline em{font-style:italic;color:var(--gold)}
 .feat-ico{width:36px;height:36px;flex-shrink:0;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px}
 .feat-row h4{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px;letter-spacing:.04em}
 .feat-row p{font-size:13px;color:var(--muted);line-height:1.65}
-.foto-feature{position:relative;height:88vh;min-height:560px;overflow:hidden}
+.foto-feature{position:relative;z-index:10;height:88vh;min-height:560px;overflow:hidden}
 .foto-feature img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s var(--ease)}
 .foto-feature:hover img{transform:scale(1.03)}
 .foto-feature-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,8,6,.62) 0%,rgba(10,8,6,.1) 60%,transparent 100%);display:flex;align-items:center}
@@ -155,7 +155,9 @@ footer{background:var(--ink)}
 @media(max-width:768px){.n-links,.n-btn{display:none}.n-ham{display:flex}.menu-grid{grid-template-columns:1fr 1fr}.ft-main{grid-template-columns:1fr;gap:28px}body{cursor:auto}#cur{display:none}}
 @media(max-width:480px){.menu-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.hero-ctas{flex-direction:column}}
 /* overlay scroll effect */
-.overlay-section{position:relative;z-index:10;background:var(--white);box-shadow:0 -8px 40px rgba(0,0,0,.18)}
+.overlay-section{position:relative;z-index:10;background:var(--white);box-shadow:0 -12px 48px rgba(0,0,0,.22)}
+section.pad{position:relative;z-index:10;background:var(--white)}
+section[style*="background:var(--ink)"]{background:var(--ink) !important}
 /* hero wrapper needs to allow sticky children */
 #hero-wrap{position:relative}
 
@@ -217,7 +219,22 @@ footer{background:var(--ink)}
 .cp-inp:focus{border-color:var(--gold)}
 .cp-send{width:36px;height:36px;border-radius:50%;background:var(--ink);border:none;color:var(--white);cursor:none;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .3s;flex-shrink:0}
 .cp-send:hover{background:var(--gold)}
-</style>
+#galeria{background:var(--ink);position:relative;z-index:10}
+.gal-grid{columns:2;column-gap:4px;padding:4px}
+@media(min-width:600px){.gal-grid{columns:3}}
+@media(min-width:900px){.gal-grid{columns:4}}
+.gal-item{break-inside:avoid;margin-bottom:4px;overflow:hidden;cursor:zoom-in}
+.gal-item img{width:100%;display:block;transition:transform .6s var(--ease),filter .4s;filter:brightness(.92)}
+.gal-item:hover img{transform:scale(1.04);filter:brightness(1)}
+#gal-lb{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+#gal-lb.open{opacity:1;pointer-events:all}
+#gal-lb img{max-width:90vw;max-height:88vh;object-fit:contain;border-radius:4px;box-shadow:0 20px 80px rgba(0,0,0,.6)}
+#gal-lb-close{position:absolute;top:20px;right:28px;color:rgba(255,255,255,.7);font-size:32px;cursor:pointer;background:none;border:none;line-height:1;transition:color .2s}
+#gal-lb-close:hover{color:white}
+#gal-lb-prev,#gal-lb-next{position:absolute;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.6);font-size:40px;background:none;border:none;cursor:pointer;padding:0 18px;transition:color .2s;line-height:1}
+#gal-lb-prev:hover,#gal-lb-next:hover{color:white}
+#gal-lb-prev{left:0}#gal-lb-next{right:0}
+#galPage{position:fixed;inset:0;z-index:2000;background:var(--ink);overflow-y:auto;transform:translateY(100%);transition:transform .5s var(--ease);will-change:transform}#galPage.open{transform:translateY(0)}#galPage-hdr{position:sticky;top:0;z-index:10;background:rgba(26,23,20,.95);backdrop-filter:blur(12px);padding:20px 6vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08)}#galPage-title{font-family:var(--serif);font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--white)}#galPage-close{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-family:var(--sans);font-size:12px;letter-spacing:.1em;padding:8px 18px;border-radius:20px;cursor:none;transition:border-color .3s,color .3s}#galPage-close:hover{border-color:var(--gold);color:var(--gold)}#galPage-body{padding:24px 4px 60px}</style>
 </head>
 <body>
 <div id="cur"><div id="ca"></div><div id="cb"></div></div>
@@ -232,7 +249,7 @@ footer{background:var(--ink)}
 <nav id="nav">
   <a href="#" class="n-logo">Bodega <em>de</em> Uga</a>
   <ul class="n-links">
-    <li><a href="#historia">Historia</a></li>
+    <li><a href="#historia">Historia</a></li><li><a href="#galeria-page" onclick="event.preventDefault();openGalPage()">Galeria</a></li>
     <li><a href="#salmon">Nuestros Productos</a></li>
     <li><a href="#nosotros">Sobre Nosotros</a></li>
     <li><a href="#chat-ia" onclick="event.preventDefault();toggleChat()">Asistente IA</a></li>
@@ -255,7 +272,7 @@ footer{background:var(--ink)}
   <div class="hero-scroll"><div class="hero-line"></div><span>Scroll</span></div>
   <div class="hero-coord">28N - 13W</div>
 </section>
-
+<div style="height:100svh"></div>
 <section id="historia" class="pad overlay-section">
   <div class="wrap">
     <div class="two-col">
@@ -292,8 +309,8 @@ footer{background:var(--ink)}
     </div>
   </div>
 </div>
-<div style="padding:0 6vw"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
-<section id="salmon" class="pad">
+<div style="padding:0 6vw;position:relative;z-index:10;background:var(--white)"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
+<section id="salmon" class="pad overlay-section">
   <div class="wrap">
     <div class="two-col">
       <div>
@@ -317,8 +334,8 @@ footer{background:var(--ink)}
     </div>
   </div>
 </section>
-<div style="padding:0 6vw"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
-<section id="carne" class="pad">
+<div style="padding:0 6vw;position:relative;z-index:10;background:var(--white)"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
+<section id="carne" class="pad overlay-section">
   <div class="wrap">
     <div class="two-col">
       <div class="img-box slide-from-left" style="aspect-ratio:4/5;position:relative">
@@ -342,7 +359,7 @@ footer{background:var(--ink)}
     </div>
   </div>
 </section>
-<div style="padding:0 6vw"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
+<div style="padding:0 6vw;position:relative;z-index:10;background:var(--white)"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
 <section id="menu" class="pad" style="background:var(--off)">
   <div class="wrap">
     <div style="text-align:center">
@@ -369,7 +386,8 @@ footer{background:var(--ink)}
     </div>
   </div>
 </section>
-<div style="padding:0 6vw"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
+
+<div style="padding:0 6vw;position:relative;z-index:10;background:var(--white)"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
 <section id="reviews" class="pad" style="background:var(--white)">
   <div class="wrap">
     <div style="text-align:center">
@@ -382,7 +400,7 @@ footer{background:var(--ink)}
     <div class="rev-track rev2" id="rt2"></div>
   </div>
 </section>
-<div style="padding:0 6vw"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
+<div style="padding:0 6vw;position:relative;z-index:10;background:var(--white)"><div class="hdiv"><div class="hdiv-dot"></div></div></div>
 <section id="nosotros" class="pad" style="background:var(--ink);color:var(--white)">
   <div class="wrap">
     <div class="label rv" style="color:var(--gold2)">Quienes Somos</div>
@@ -409,7 +427,7 @@ footer{background:var(--ink)}
   <div class="wrap">
     <div class="ft-main">
       <div class="ft-brand"><div class="ft-logo">Bodega <em>de</em> Uga</div><p>Cocina de mercado en el corazon de Lanzarote. Donde el menu lo escribe la naturaleza cada manana.</p></div>
-      <div class="ft-col"><h4>Navegar</h4><ul><li><a href="#historia">Historia</a></li><li><a href="#salmon">Salmon</a></li><li><a href="#carne">Carnes</a></li><li><a href="#menu">La Mesa</a></li><li><a href="#reviews">Resenas</a></li></ul></div>
+      <div class="ft-col"><h4>Navegar</h4><ul><li><a href="#historia">Historia</a></li><li><a href="#galeria-page" onclick="event.preventDefault();openGalPage()">Galeria</a></li><li><a href="#salmon">Salmon</a></li><li><a href="#carne">Carnes</a></li><li><a href="#menu">La Mesa</a></li><li><a href="#reviews">Resenas</a></li></ul></div>
       <div class="ft-col"><h4>Contacto</h4><ul><li><a href="tel:+34928830006">+34 928 830 006</a></li><li><a href="mailto:info@bodegadeuga.com">info@bodegadeuga.com</a></li><li><a href="https://www.google.com/maps/search/Bodega+de+Uga+Lanzarote" target="_blank" rel="noopener">Como llegar</a></li></ul></div>
     </div>
     <div class="ft-bot"><p>2025 Bodega de Uga - Uga, Lanzarote</p><div class="ft-legal"><a href="#">Aviso Legal</a><a href="#">Privacidad</a></div></div>
@@ -509,7 +527,34 @@ function sendSugg(btn){
   }, {threshold: 0.15});
   els.forEach(function(el){ obs.observe(el); });
 })();
-</script>
+
+var galImgs=[],galIdx=0;
+function galOpen(el){
+  var grid=document.getElementById('galGrid');
+  galImgs=Array.from(grid.querySelectorAll('img'));
+  galIdx=galImgs.indexOf(el);
+  document.getElementById('gal-lb-img').src=el.src;
+  document.getElementById('gal-lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function galClose(e){
+  if(e&&e.target!==document.getElementById('gal-lb')&&e.target.id!=='gal-lb-close')return;
+  document.getElementById('gal-lb').classList.remove('open');
+  document.body.style.overflow='';
+}
+function galNav(dir,e){
+  if(e)e.stopPropagation();
+  galIdx=(galIdx+dir+galImgs.length)%galImgs.length;
+  document.getElementById('gal-lb-img').src=galImgs[galIdx].src;
+}
+document.addEventListener('keydown',function(e){
+  var lb=document.getElementById('gal-lb');
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')galClose({target:lb});
+  if(e.key==='ArrowLeft')galNav(-1,null);
+  if(e.key==='ArrowRight')galNav(1,null);
+});
+function openGalPage(){document.getElementById('galPage').classList.add('open');document.body.style.overflow='hidden';}function closeGalPage(){document.getElementById('galPage').classList.remove('open');document.body.style.overflow='';}</script>
 
 <!-- LOADER -->
 <div id="loader">
@@ -554,6 +599,56 @@ function sendSugg(btn){
   <div class="cp-inp-row">
     <input class="cp-inp" id="cpInp" type="text" placeholder="Escribe tu pregunta..." onkeydown="if(event.key==='Enter')sendMsg()">
     <button class="cp-send" onclick="sendMsg()" aria-label="Enviar">&#x27A4;</button>
+  </div>
+</div>
+<div id="gal-lb" onclick="galClose(event)"><button id="gal-lb-close" onclick="galClose()">&#x2715;</button><button id="gal-lb-prev" onclick="galNav(-1,event)">&#x2039;</button><img id="gal-lb-img" src="" alt=""><button id="gal-lb-next" onclick="galNav(1,event)">&#x203A;</button></div><div id="galPage">
+  <div id="galPage-hdr">
+    <span id="galPage-title">Galeria — Bodega de Uga</span>
+    <button id="galPage-close" onclick="closeGalPage()">&#x2715; Cerrar</button>
+  </div>
+  <div id="galPage-body">
+    <div class="gal-grid">
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/9a/eb/68/nueva-terraza.jpg?w=900&h=500&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/49/7c/1a/bodega-de-uga.jpg?w=900&h=500&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/9a/eb/71/nueva-terraza.jpg?w=900&h=500&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c001-Restaurant-Bodega-de-Uga-food.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/ca62-Restaurant-Bodega-de-Uga-meals.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/cf8f-Restaurant-Bodega-Uga-smoked-salmon.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c566-Bodega-Uga-design.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c1d4-Restaurant-Bodega-Uga-sea-bass.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c318-Restaurant-Bodega-Uga-grilled-salmon.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c17f-interior-Bodega-Uga.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c68a-design-Bodega-Uga.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/cc0c-Restaurant-Bodega-Uga-interior-1.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/cf0a-Restaurant-Bodega-Uga-design-1.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c9de-Bodega-Uga-Yaiza-interior-1.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c62b-Bodega-Uga-Yaiza-baby-back-ribs.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c276-Bodega-Uga-cheesecake.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://img02.restaurantguru.com/c53f-Bodega-Uga-Yaiza-cheesecake.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/67/61/2c/caption.jpg?w=1100&h=1100&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/67/61/2b/caption.jpg?w=1100&h=1100&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/67/61/2a/caption.jpg?w=1100&h=1100&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/f6/1f/af/caption.jpg?w=1100&h=1100&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/f6/1f/ae/caption.jpg?w=1100&h=1100&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/f6/1f/ad/caption.jpg?w=1200&h=1200&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/90/f2/e8/caption.jpg?w=1100&h=1100&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/90/f2/e7/caption.jpg?w=1200&h=1200&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/90/f2/e6/caption.jpg?w=1100&h=1100&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/02/b2/0b/caption.jpg?w=1100&h=1100&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/ad/d4/c8/caption.jpg?w=700&h=700&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/ad/d4/c7/caption.jpg?w=700&h=700&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/ad/d4/c6/caption.jpg?w=700&h=700&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/ad/d4/c5/caption.jpg?w=700&h=700&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/ad/d4/c4/caption.jpg?w=700&h=700&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/41/9c/45/bodega-de-uga.jpg?w=600&h=-1&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/8f/90/41/bodega-de-uga.jpg?w=600&h=-1&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/cf/f9/99/uga.jpg?w=600&h=-1&s=1" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://media-cdn.tripadvisor.com/media/photo-s/13/f7/1d/50/bodega-de-uga.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://cdn.sanity.io/images/qwdi9u7n/production/8b42d8cba79435c442e6523143cb679ff2be1171-1800x1000.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://cdn.sanity.io/images/qwdi9u7n/production/a4137f98fd61d26a97fae7a23d94ec184cbe73ba-5997x4000.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://cdn.sanity.io/images/qwdi9u7n/production/db32b3cad9f0fd6604c3355a759bf0e2c789042e-2482x1826.png" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+      <div class="gal-item"><img src="https://cdn.sanity.io/images/qwdi9u7n/production/b9b4bd084b63de264dcde7a44dbb4ef55240ab0a-1920x1080.jpg" loading="lazy" alt="Bodega de Uga" onclick="galOpen(this)"></div>
+    </div>
   </div>
 </div>
 </body>
