@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bodega-uga",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3456", "C:\\Users\\Usuario\\Desktop\\UGA"],
+      "port": 3456
+    }
+  ]
+}
